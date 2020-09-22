@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashMap;
 
 /* 
  * Given an array of integers nums and an integer target, 
@@ -30,22 +31,24 @@ Date: 09/21/2020
 public class TwoSums {
 
     public static int[] twoSum(int[] nums, int target) 
-    {        
-        int[] indeces = new int[2];
-        
-        for(int i = 0; i < nums.length - 1; i++)
-        {
-            for(int j = i + 1; j < nums.length; j++)
-            {
-                if(nums[i] + nums[j] == target)
-                {
-                    indeces[0] = i;
-                    indeces[1] = j;
-                }
+    {   
+    	int[] solution = new int[2];
+    	
+    	HashMap<Integer,Integer> hash = new HashMap<Integer,Integer>();
+        for(int i = 0; i < nums.length; i++){
+
+            Integer difference = (Integer)(target - nums[i]);
+            if(hash.containsKey(difference)){
+                solution[0] = hash.get(difference);
+                solution[1] = i;
+                return solution;
             }
+
+            hash.put(nums[i], i);
+
         }
-            
-        return indeces;
+        
+        return solution;
     }
 
 	
@@ -64,4 +67,24 @@ public class TwoSums {
 		
 		System.out.println("Expected: " + Arrays.toString(expected));
 	}
+    
+	/* Slower solution
+    public static int[] twoSum(int[] nums, int target) 
+    {        
+        int[] solution = new int[2];
+        
+        for(int i = 0; i < nums.length - 1; i++)
+        {
+            for(int j = i + 1; j < nums.length; j++)
+            {
+                if(nums[i] + nums[j] == target)
+                {
+                    solution[0] = i;
+                    solution[1] = j;
+                }
+            }
+        }
+            
+        return solution;
+    }*/
 }
