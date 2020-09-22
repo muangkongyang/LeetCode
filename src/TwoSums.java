@@ -35,10 +35,13 @@ public class TwoSums {
     	int[] solution = new int[2];
     	
     	HashMap<Integer,Integer> hash = new HashMap<Integer,Integer>();
-        for(int i = 0; i < nums.length; i++){
-
+    	
+        for(int i = 0; i < nums.length; i++)
+        {
             Integer difference = (Integer)(target - nums[i]);
-            if(hash.containsKey(difference)){
+            
+            if(hash.containsKey(difference))
+            {
                 solution[0] = hash.get(difference);
                 solution[1] = i;
                 return solution;
